@@ -1,0 +1,48 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.title {
+  color: red;
+  text-align: center;
+}
+
+body {
+  background-color: #ededed;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.container {
+  border: 1px solid black;
+  height: 600px;
+  width: 600px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    border: 1px solid black;
+    height: 400px;
+    width: 400px;
+  }
+}
+
+@media (max-width: 500px) {
+  .container {
+    border: 1px solid black;
+    height: 300px;
+    width: 100%;
+  }
+}

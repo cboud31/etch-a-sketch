@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>✏️ Etch-a-Sketch</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1 class="title">Etch-a-Sketch</h1>
+    <main class="app">
+      <div class="controls">
+        <input type="color" />
+        <button class="btn-color">Color Mode</button>
+        <button class="btn-rainbow">Rainbow Mode</button>
+        <button class="btn-erase">Erase</button>
+        <button class="btn-clear">Clear</button>
+        <div class="grid-range">
+          <p>## X ##</p>
+          <input
+            type="range"
+            id="grid-squares-selector"
+            name="grid-squares-selector"
+            min="1"
+            max="64"
+          />
+        </div>
+      </div>
+      <div class="container"></div>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
