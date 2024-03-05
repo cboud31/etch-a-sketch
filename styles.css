@@ -59,13 +59,17 @@ body {
   width: inherit;
 }
 
-.grid-squares-selector {
+#grid-squares-selector {
+  accent-color: black;
   margin-top: 16px;
 }
 
 .sketch-pad {
   background-color: #fefefe;
   border: 1px solid black;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(1, 1fr);
   height: 600px;
   width: 600px;
 }
