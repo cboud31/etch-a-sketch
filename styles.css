@@ -1,11 +1,13 @@
 * {
   box-sizing: border-box;
+  font-family: "Roboto";
   margin: 0;
   padding: 0;
 }
 
 .title {
-  color: red;
+  color: black;
+  font-size: 48px;
   text-align: center;
 }
 
@@ -17,32 +19,74 @@ body {
   display: flex;
   justify-content: center;
   gap: 100px;
+  padding-top: 50px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .controls {
   display: flex;
   flex-direction: column;
+  gap: 32px;
   justify-content: center;
 }
 
-.container {
+.controls > * {
+  width: 180px;
+}
+
+.controls > button {
+  font-size: 18px;
+  padding: 10px 20px;
+}
+
+.color {
+  height: 45px;
+}
+
+.toggle {
+  background-color: black;
+  color: #fefefe;
+}
+
+.grid-range > * {
+  display: flex;
+  justify-content: center;
+  width: inherit;
+}
+
+.grid-squares-selector {
+  margin-top: 16px;
+}
+
+.sketch-pad {
+  background-color: #fefefe;
   border: 1px solid black;
   height: 600px;
   width: 600px;
 }
 
-@media (max-width: 768px) {
-  .container {
+@media (max-width: 950px) {
+  .sketch-pad {
     border: 1px solid black;
     height: 400px;
     width: 400px;
   }
 }
 
-@media (max-width: 500px) {
-  .container {
+@media (max-width: 700px) {
+  .app {
+    align-items: center;
+    flex-direction: column-reverse;
+  }
+
+  .sketch-pad {
     border: 1px solid black;
     height: 300px;
-    width: 100%;
+    width: 300px;
   }
 }

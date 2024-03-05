@@ -5,12 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>✏️ Etch-a-Sketch</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit&family=Kode+Mono:wght@400..700&family=Roboto:wght@100&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <h1 class="title">Etch-a-Sketch</h1>
     <main class="app">
       <div class="controls">
-        <input type="color" />
+        <input class="color" type="color" />
         <button class="btn-color">Color Mode</button>
         <button class="btn-rainbow">Rainbow Mode</button>
         <button class="btn-erase">Erase</button>
@@ -26,7 +31,10 @@
           />
         </div>
       </div>
-      <div class="container"></div>
+      <div class="container">
+        <h1 class="title">Etch-a-Sketch</h1>
+        <div class="sketch-pad"></div>
+      </div>
     </main>
     <script src="app.js"></script>
   </body>
