@@ -19,14 +19,47 @@ setToggleButton = (button) => {
   });
 };
 
+const buildGridSquares = (value) => {
+  let loopLimit = value * value;
+  for (let i = 1; i <= loopLimit; i++) {
+    const gridSquare = document.createElement("div");
+    gridSquare.classList.add("grid-square");
+    sketchPad.appendChild(gridSquare);
+    // click-event listener
+  }
+  return;
+};
+
 toggleButtons.forEach((button) => {
   setToggleButton(button);
 });
 
 gridRangeInput.addEventListener("change", (event) => {
-  value = event.target.value;
-  console.log(value);
+  let value = event.target.value;
+  // Below: Break out into helper function?
   gridRangeLabel.textContent = `${value} X ${value}`;
   sketchPad.style.gridTemplateColumns = `repeat(${value}, 1fr)`;
   sketchPad.style.gridTemplateRows = `repeat(${value}, 1fr)`;
+  buildGridSquares(value);
 });
+
+/*
+square click event listeners
+gridSquare.addEventListener("click", () => {
+      console.log("clicked!");
+    });
+    //    Mouse over
+    let mouseDown = false;
+    function changeColor() {
+      if (mouseDown) {
+        console.log("Change color");
+      }
+    }
+    gridSquare.addEventListener("mousedown", () => {
+      mouseDown = true;
+    });
+    gridSquare.addEventListener("mouseup", () => {
+      mouseDown = false;
+    });
+    gridSquare.addEventListener("mouserover", changeColor);
+*/
