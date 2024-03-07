@@ -8,8 +8,16 @@ toggleButtons.push(colorBtn, rainbowBtn);
 const gridRangeLabel = document.querySelector(".grid-range-label");
 const gridRangeInput = document.querySelector("#grid-squares-selector");
 const sketchPad = document.querySelector(".sketch-pad");
+const colorPicker = document.querySelector(".color");
 
-setToggleButton = (button) => {
+let mouseDown = false;
+let color = colorPicker.value;
+
+colorPicker.addEventListener("change", () => {
+  color = colorPicker.value;
+});
+
+const setToggleButton = (button) => {
   return button.addEventListener("click", () => {
     if (button.classList.contains(TOGGLE_BUTTON_CLASS)) {
       button.classList.remove(TOGGLE_BUTTON_CLASS);
@@ -19,6 +27,12 @@ setToggleButton = (button) => {
   });
 };
 
+const changeColor = (square) => {
+  if (mouseDown) {
+    // console.log("change the square color");
+  }
+};
+
 const buildGridSquares = (value) => {
   let loopLimit = value * value;
   for (let i = 1; i <= loopLimit; i++) {
@@ -26,6 +40,18 @@ const buildGridSquares = (value) => {
     gridSquare.classList.add("grid-square");
     sketchPad.appendChild(gridSquare);
     // click-event listener
+    gridSquare.addEventListener("click", () => {
+      mouseDown = true;
+      changeColor();
+      mouseDown = false;
+    });
+    gridSquare.addEventListener("mousedown", () => {
+      mouseDown = true;
+    });
+    gridSquare.addEventListener("mouseup", () => {
+      mouseDown = false;
+    });
+    gridSquare.addEventListener("mouseover", changeColor);
   }
   return;
 };
@@ -42,24 +68,3 @@ gridRangeInput.addEventListener("change", (event) => {
   sketchPad.style.gridTemplateRows = `repeat(${value}, 1fr)`;
   buildGridSquares(value);
 });
-
-/*
-square click event listeners
-gridSquare.addEventListener("click", () => {
-      console.log("clicked!");
-    });
-    //    Mouse over
-    let mouseDown = false;
-    function changeColor() {
-      if (mouseDown) {
-        console.log("Change color");
-      }
-    }
-    gridSquare.addEventListener("mousedown", () => {
-      mouseDown = true;
-    });
-    gridSquare.addEventListener("mouseup", () => {
-      mouseDown = false;
-    });
-    gridSquare.addEventListener("mouserover", changeColor);
-*/
