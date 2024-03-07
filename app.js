@@ -4,11 +4,15 @@ const toggleButtons = [];
 const colorBtn = document.querySelector(".btn-color");
 const rainbowBtn = document.querySelector(".btn-rainbow");
 toggleButtons.push(colorBtn, rainbowBtn);
+const clearButton = document.querySelector(".btn-clear");
+console.log(clearButton);
 
 const gridRangeLabel = document.querySelector(".grid-range-label");
 const gridRangeInput = document.querySelector("#grid-squares-selector");
 const sketchPad = document.querySelector(".sketch-pad");
 const colorPicker = document.querySelector(".color");
+
+console.log(sketchPad);
 
 let mouseDown = false;
 let color = colorPicker.value;
@@ -29,29 +33,34 @@ const setToggleButton = (button) => {
 
 const changeColor = (square) => {
   if (mouseDown) {
-    // console.log("change the square color");
+    console.log("change the square color");
+    square.style.backgroundColor = color;
   }
 };
 
 const buildGridSquares = (value) => {
   let loopLimit = value * value;
   for (let i = 1; i <= loopLimit; i++) {
-    const gridSquare = document.createElement("div");
-    gridSquare.classList.add("grid-square");
-    sketchPad.appendChild(gridSquare);
-    // click-event listener
-    gridSquare.addEventListener("click", () => {
-      mouseDown = true;
-      changeColor();
-      mouseDown = false;
-    });
-    gridSquare.addEventListener("mousedown", () => {
-      mouseDown = true;
-    });
-    gridSquare.addEventListener("mouseup", () => {
-      mouseDown = false;
-    });
-    gridSquare.addEventListener("mouseover", changeColor);
+    // when we run this on page load, we get 2 divs
+    if (true) {
+      const gridSquare = document.createElement("div");
+      gridSquare.classList.add("grid-square");
+      sketchPad.appendChild(gridSquare);
+      // click-event listener
+      gridSquare.addEventListener("click", () => {
+        console.dir(gridSquare);
+        mouseDown = true;
+        changeColor(gridSquare);
+        mouseDown = false;
+      });
+      gridSquare.addEventListener("mousedown", () => {
+        mouseDown = true;
+      });
+      gridSquare.addEventListener("mouseup", () => {
+        mouseDown = false;
+      });
+      gridSquare.addEventListener("mouseover", () => changeColor(gridSquare));
+    }
   }
   return;
 };
@@ -68,3 +77,5 @@ gridRangeInput.addEventListener("change", (event) => {
   sketchPad.style.gridTemplateRows = `repeat(${value}, 1fr)`;
   buildGridSquares(value);
 });
+
+buildGridSquares(gridRangeInput.value);
