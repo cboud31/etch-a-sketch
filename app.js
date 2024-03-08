@@ -16,6 +16,7 @@ console.log(sketchPad);
 
 let mouseDown = false;
 let color = colorPicker.value;
+let squareCount = gridRangeInput.value;
 
 colorPicker.addEventListener("change", () => {
   color = colorPicker.value;
@@ -41,26 +42,22 @@ const changeColor = (square) => {
 const buildGridSquares = (value) => {
   let loopLimit = value * value;
   for (let i = 1; i <= loopLimit; i++) {
-    // when we run this on page load, we get 2 divs
-    if (true) {
-      const gridSquare = document.createElement("div");
-      gridSquare.classList.add("grid-square");
-      sketchPad.appendChild(gridSquare);
-      // click-event listener
-      gridSquare.addEventListener("click", () => {
-        console.dir(gridSquare);
-        mouseDown = true;
-        changeColor(gridSquare);
-        mouseDown = false;
-      });
-      gridSquare.addEventListener("mousedown", () => {
-        mouseDown = true;
-      });
-      gridSquare.addEventListener("mouseup", () => {
-        mouseDown = false;
-      });
-      gridSquare.addEventListener("mouseover", () => changeColor(gridSquare));
-    }
+    const gridSquare = document.createElement("div");
+    gridSquare.classList.add("grid-square");
+    sketchPad.appendChild(gridSquare);
+    gridSquare.addEventListener("click", () => {
+      console.dir(gridSquare);
+      mouseDown = true;
+      changeColor(gridSquare);
+      mouseDown = false;
+    });
+    gridSquare.addEventListener("mousedown", () => {
+      mouseDown = true;
+    });
+    gridSquare.addEventListener("mouseup", () => {
+      mouseDown = false;
+    });
+    gridSquare.addEventListener("mouseover", () => changeColor(gridSquare));
   }
   return;
 };
@@ -69,13 +66,22 @@ toggleButtons.forEach((button) => {
   setToggleButton(button);
 });
 
-gridRangeInput.addEventListener("change", (event) => {
-  let value = event.target.value;
-  // Below: Break out into helper function?
-  gridRangeLabel.textContent = `${value} X ${value}`;
-  sketchPad.style.gridTemplateColumns = `repeat(${value}, 1fr)`;
-  sketchPad.style.gridTemplateRows = `repeat(${value}, 1fr)`;
-  buildGridSquares(value);
+clearButton.addEventListener("click", () => {
+  console.log("Change all the squares back to white");
+  squares = document.querySelectorAll(".grid-square");
+  console.log(squares);
+  squares.forEach((square) => {
+    square.style.backgroundColor = "#fff";
+  });
 });
 
-buildGridSquares(gridRangeInput.value);
+gridRangeInput.addEventListener("change", (event) => {
+  squareCount = event.target.value;
+  // Below: Break out into helper function?
+  gridRangeLabel.textContent = `${squareCount} X ${squareCount}`;
+  sketchPad.style.gridTemplateColumns = `repeat(${squareCount}, 1fr)`;
+  sketchPad.style.gridTemplateRows = `repeat(${squareCount}, 1fr)`;
+  buildGridSquares(squareCount);
+});
+
+buildGridSquares(squareCount);
