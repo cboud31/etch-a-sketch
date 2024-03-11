@@ -3,8 +3,9 @@ const TOGGLE_BUTTON_CLASS = "toggle";
 const toggleButtons = [];
 const colorBtn = document.querySelector(".btn-color");
 const rainbowBtn = document.querySelector(".btn-rainbow");
-toggleButtons.push(colorBtn, rainbowBtn);
+const eraseBtn = document.querySelector(".btn-erase");
 const clearButton = document.querySelector(".btn-clear");
+toggleButtons.push(colorBtn, rainbowBtn, eraseBtn);
 
 const gridRangeLabel = document.querySelector(".grid-range-label");
 const gridRangeInput = document.querySelector("#grid-squares-selector");
@@ -22,16 +23,29 @@ colorPicker.addEventListener("change", () => {
 const setToggleButton = (button) => {
   return button.addEventListener("click", () => {
     if (button.classList.contains(TOGGLE_BUTTON_CLASS)) {
-      button.classList.remove(TOGGLE_BUTTON_CLASS);
+      return;
     } else {
+      toggleButtons.forEach((button) =>
+        button.classList.remove(TOGGLE_BUTTON_CLASS)
+      );
       button.classList.add(TOGGLE_BUTTON_CLASS);
     }
   });
 };
 
+// const getRainbowColor = () => {
+//   const rainbowColors = [
+//     ''
+//   ]
+// }
+
 const changeColor = (square) => {
   if (mouseDown) {
-    square.style.backgroundColor = color;
+    if (colorBtn.classList.contains(TOGGLE_BUTTON_CLASS)) {
+      square.style.backgroundColor = color;
+    } else if (eraseBtn.classList.contains(TOGGLE_BUTTON_CLASS)) {
+      square.style.backgroundColor = "#fff";
+    }
   }
 };
 
@@ -70,7 +84,6 @@ clearButton.addEventListener("click", () => {
 
 gridRangeInput.addEventListener("change", (event) => {
   squareCount = event.target.value;
-  // Below: Break out into helper function?
   gridRangeLabel.textContent = `${squareCount} X ${squareCount}`;
   sketchPad.style.gridTemplateColumns = `repeat(${squareCount}, 1fr)`;
   sketchPad.style.gridTemplateRows = `repeat(${squareCount}, 1fr)`;
