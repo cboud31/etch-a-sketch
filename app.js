@@ -33,11 +33,19 @@ const setToggleButton = (button) => {
   });
 };
 
-// const getRainbowColor = () => {
-//   const rainbowColors = [
-//     ''
-//   ]
-// }
+const getRainbowColor = () => {
+  const rainbowColors = [
+    "#FF0000",
+    "#FFA500",
+    "#FFFF00",
+    "#00FF00",
+    "#0000FF",
+    "#4B0082",
+    "#8F00FF",
+  ];
+  randomNum = Math.floor(Math.random() * rainbowColors.length + 1);
+  return rainbowColors[randomNum];
+};
 
 const changeColor = (square) => {
   if (mouseDown) {
@@ -45,6 +53,9 @@ const changeColor = (square) => {
       square.style.backgroundColor = color;
     } else if (eraseBtn.classList.contains(TOGGLE_BUTTON_CLASS)) {
       square.style.backgroundColor = "#fff";
+    } else if (rainbowBtn.classList.contains(TOGGLE_BUTTON_CLASS)) {
+      const rainbowColor = getRainbowColor();
+      square.style.backgroundColor = rainbowColor;
     }
   }
 };
